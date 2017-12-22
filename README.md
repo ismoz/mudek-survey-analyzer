@@ -7,7 +7,8 @@ Mudek is short for "Muhendislik Egitim Programlari Degerlendirme ve Akreditasyon
 
 ## Prerequisites
 
-Python 3.4.4 (or greater) with pylatex and matplotlib modules.
+- Python 3.4.4 (or greater) with pylatex and matplotlib modules.
+- Latex.
 
 ## Usage
 
