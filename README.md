@@ -11,11 +11,14 @@ Python 3.4.4 (or greater) with pylatex and matplotlib modules.
 
 ## Usage
 
-Check "Docs/Kullaným.pdf". This manual is in Turkish, there is no other manual for now.
+Check "Docs/Kullaným.pdf". This manual is in Turkish, there is no other manual for now. 
+
+However, the program menu is in English. Run "configure.py" to configure the database and run "mudek_analyzer.py" to run the main program.
 
 ## Author
 
-Ismail Ozturk <ismail.ozturk@amasya.edu.tr>
+Ismail Ozturk 
+<ismail.ozturk@amasya.edu.tr>
 
 ## License
 
