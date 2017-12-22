@@ -1,0 +1,2 @@
+Manually downloaded CSV files are zipped! You can add another menu option to 
+automatically extract them.
