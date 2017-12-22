@@ -1,0 +1,3 @@
+---------- v1.1 -------------
+- Corrected _try_login function inside mailer.py 
+- Changed options for sending mails in mudek_analyzer.py; added more options

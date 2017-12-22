@@ -1,0 +1,97 @@
+/* SADECE BU KISMI DEGISTIRIN */
+FORM_OPEN_DATE   =  "2017-11-09 19:00";  /* FORMAT: YYYY-AA-GG SS:DD */
+FORM_CLOSE_DATE  =  "2017-11-10 09:45";
+RESPONSE_COUNT   =  "";
+/* SADECE BU KISMI DEGISTIRIN */
+
+
+/* Web tutorial: http://labnol.org/?p=20707  */
+
+/* Initialize the form, setup time based triggers */
+function Initialize() {
+  
+  deleteTriggers_();
+  
+  if ((FORM_OPEN_DATE !== "") && 
+      ((new Date()).getTime() < parseDate_(FORM_OPEN_DATE).getTime())) { 
+    closeForm();
+    ScriptApp.newTrigger("openForm")
+    .timeBased()
+    .at(parseDate_(FORM_OPEN_DATE))
+    .create();
+  }
+  
+  if (FORM_CLOSE_DATE !== "") { 
+    ScriptApp.newTrigger("closeForm")
+    .timeBased()
+    .at(parseDate_(FORM_CLOSE_DATE))
+    .create(); 
+  }
+  
+  if (RESPONSE_COUNT !== "") { 
+    ScriptApp.newTrigger("checkLimit")
+    .forForm(FormApp.getActiveForm())
+    .onFormSubmit()
+    .create();
+  }
+  
+  /* EKLEME */
+  var form = FormApp.getActiveForm();
+  var form_name = form.getTitle();
+  var my_subject = "Zamanlayici Kuruldu"
+  var my_message = form_name + " icin " + " Acilis: " + FORM_OPEN_DATE + " Kapanis: " + FORM_CLOSE_DATE
+  MailApp.sendEmail(Session.getActiveUser().getEmail(), my_subject, my_message); 
+  /* EKLEME */
+  
+}
+
+/* Delete all existing Script Triggers */
+function deleteTriggers_() {  
+  var triggers = ScriptApp.getProjectTriggers();  
+  for (var i in triggers) {
+    ScriptApp.deleteTrigger(triggers[i]);
+  }
+}
+
+/* Send a mail to the form owner when the form status changes */
+function informUser_(subject) {
+  var formURL = FormApp.getActiveForm().getPublishedUrl();
+  MailApp.sendEmail(Session.getActiveUser().getEmail(), subject, formURL);  
+}
+
+/* Allow Google Form to Accept Responses */
+function openForm() {
+  var form = FormApp.getActiveForm();
+  form.setAcceptingResponses(true);
+  var message1 = form.getTitle();
+  var message2 = " kullanima acilmistir"
+  var message = message1 + message2;
+  informUser_(message);
+}
+
+/* Close the Google Form, Stop Accepting Reponses */
+function closeForm() {  
+  var form = FormApp.getActiveForm();
+  form.setAcceptingResponses(false);
+  var message1 = form.getTitle();
+  var message2 = " kullanima kapatilmistir"
+  var message = message1 + message2;
+  deleteTriggers_();
+  informUser_(message);
+}
+
+/* If Total # of Form Responses >= Limit, Close Form */
+function checkLimit() {
+  if (FormApp.getActiveForm().getResponses().length >= RESPONSE_COUNT ) {
+    closeForm();
+  }  
+}
+
+/* Parse the Date for creating Time-Based Triggers */
+function parseDate_(d) {
+  return new Date(d.substr(0,4), d.substr(5,2)-1, 
+                  d.substr(8,2), d.substr(11,2), d.substr(14,2));
+}
+
+/* Written by Amit Agarwal amit@labnol.org */
+/* Ýsmail Ozturk tarafindan modifiye edilmistir */
