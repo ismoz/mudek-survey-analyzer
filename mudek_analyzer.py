@@ -10,8 +10,9 @@ python_version  : 3.4.4
 notes           : 
 change history  : --- v1.1 ---
                   - Added more options for sending email 
-		  --- v1.2 ---
-		  - Added delay between emails to prevent "too fast" errors from the destination 			    email server	   
+                  --- v1.2 ---
+                  - Added delay between emails to prevent "too fast" errors from 
+                    the destination email server	   
 """
 
 import os, sys

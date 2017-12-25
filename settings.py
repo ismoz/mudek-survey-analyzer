@@ -74,7 +74,7 @@ smtp_port = 587
 smtp_TLS = True
 
 # Mail Delay Time (in seconds)
-mail_delay_time = 30
+mail_delay_time = 20
 
 # Mail body / E-posta metni
 mail_signature = ""
