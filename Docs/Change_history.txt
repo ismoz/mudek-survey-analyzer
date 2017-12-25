@@ -1,3 +1,6 @@
 ---------- v1.1 -------------
 - Corrected _try_login function inside mailer.py 
 - Changed options for sending mails in mudek_analyzer.py; added more options
+
+---------- v1.2 -------------
+- Added time delay when sending emails to avoid "too fast" errors from the destination mail server

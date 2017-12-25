@@ -1,5 +1,5 @@
 #
-version = "1.1"
+version = "1.2"
 
 
 # Answer choices (lowercase)
@@ -73,6 +73,8 @@ smtp_port = 587
 #
 smtp_TLS = True
 
+# Mail Delay Time (in seconds)
+mail_delay_time = 30
 
 # Mail body / E-posta metni
 mail_signature = ""

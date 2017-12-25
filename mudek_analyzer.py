@@ -4,16 +4,19 @@ description     : Main program.
 author          : Ismail Ozturk
 email           : ismailozturk@erciyes.edu.tr
 date created    : 12/11/2017
-date modified   : 17/12/2017
-version         : 1.1
+date modified   : 25/12/2017
+version         : 1.2
 python_version  : 3.4.4
 notes           : 
 change history  : --- v1.1 ---
-                  - Added more options for sending email    
+                  - Added more options for sending email 
+		  --- v1.2 ---
+		  - Added delay between emails to prevent "too fast" errors from the destination 			    email server	   
 """
 
 import os, sys
 import shutil
+import time
 import initialize
 import settings
 import classes
@@ -328,6 +331,9 @@ def multiEmailSend():
                     if status == 0:
                         num_success += 1
                         print("[Ok]")
+                        print("Waiting for delay ...")
+                        settings.logger.debug("Waiting {} seconds".format(settings.mail_delay_time))
+                        time.sleep(settings.mail_delay_time)
                     else:
                         print("[Failed]")
                 else:
@@ -392,6 +398,9 @@ def multiEmailSendChoice(choice):
                         if status == 0:
                             num_success += 1
                             print("[Ok]")
+                            print("Waiting for delay ...")
+                            settings.logger.debug("Waiting {} seconds".format(settings.mail_delay_time))
+                            time.sleep(settings.mail_delay_time)	
                         else:
                             print("[Failed]")
                 else:
